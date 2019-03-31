@@ -60,10 +60,10 @@
         })
 
         // Determines Size of Canvas (80%) in Window
+        console.log('resize', canvas.width, canvas.height);
         function resizeCanvas(e) {
             canvas.width = window.innerWidth * 0.8;
             canvas.height = window.innerHeight * 0.8;
-            console.log('resize', canvas.width, canvas.height);
         }
 
         // Load Canvas to Fit Screen Orientation with 80% of Size
