@@ -21,15 +21,17 @@
     <div>
         <!-- Color Picker -->
         <label>Pick a Color: </label>
-        <input type="color" id="colorpick" value="#f8f8f8">
+        <input type="color" id="colorPicker" value="#000000">
     </div>
 
     <script>
+
+        //Define Initial Variables
         var canvas = document.querySelector('canvas');
         var ctx = canvas.getContext('2d');
         var x = 0;
         var y = 0;
-        var color = "#FF4500";
+        var color = "#FF4500"; // red
         var radius = 5;
 
         // Drawing function
@@ -60,7 +62,7 @@
         
         // Clear Canvas if Orientation is Changed
         window.addEventListener('orientationchange',resizeCanvas,false)
-        
+
         // Change colors, pen size, and clear canvas
         window.addEventListener('keyup', function (e) {
             // KeyCodes found at https://keycode.info
@@ -100,24 +102,30 @@
                 resizeCanvas();
                 console.log("Canvas Cleared");
                 
-
+            // increase pen size
             } else if (e.keyCode == 38) {
-                // increase pen size
                 console.log("Pen Size Increased by 3");
                 radius = radius + 3
 
+            // decrease pen size
             } else if (e.keyCode == 40 && radius > 5) {
-                // decrease pen size
                 console.log("Pen Size Decreased by 3");
                 radius = radius - 3
             }
             draw()
         })
-
+        
+        // Resizes the Canvas to fit in Window
         function resizeCanvas() {
             canvas.width = window.innerWidth * 0.7;
             canvas.height = window.innerHeight * 0.7;
             window.addEventListener('resize', canvas.width,canvas.height);
+        }
+
+        // Change Color If Color Picker Used
+        colorPicker.addEventListener("Color Changed:", colorCheck);
+        function colorCheck(e){
+            color = event.target.value;
         }
     </script>
 
