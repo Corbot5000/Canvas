@@ -4,17 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Canvas Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <style type="text/css">
         canvas {
             border: 1px solid black;
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
 <body>
+    <!-- Initial Canvas -->
     <canvas id="canvas" width="800" height="500"></canvas>
+    
     <div>
+        <!-- Color Picker -->
         <label>Pick a Color: </label>
         <input type="color" id="colorpick" value="#f8f8f8">
     </div>
@@ -27,13 +32,15 @@
         var color = "#FF4500";
         var radius = 5;
 
+        // Drawing function
         function draw() {
             ctx.beginPath();
             ctx.fillStyle = color;
             ctx.arc(x, y, radius, 0, 2 * Math.PI);
             ctx.fill();
         }
-
+        
+        // Drawing placement event listener
         window.addEventListener('mousemove', function (e) {
             console.log(e.pageX);
             console.log(e.pageY);
@@ -42,6 +49,7 @@
             draw()
         })
 
+        // Change colors, pen size, and clear canvas
         window.addEventListener('keyup', function (e) {
             // KeyCodes found at https://keycode.info
             console.log(e.keyCode);
@@ -54,7 +62,7 @@
                 // o = orange
                 console.log("orange");
                 color = "#FF8A00"
-                
+
             } else if (e.keyCode == 82) {
                 // r = red
                 console.log("red");
@@ -93,6 +101,11 @@
             draw()
         })
 
+        // resize Canvas
+        function resizeCanvas() {
+            location.reload();
+        }
+
         function canvasSize(e) {
             window.addEventListener('resize', canvasSize);
             canvas.width = window.innerWidth * 0.7;
@@ -100,6 +113,6 @@
         }
     </script>
 
-
 </body>
+
 </html>
