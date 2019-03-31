@@ -17,15 +17,14 @@
 <body>
     <!-- Initial Canvas -->
     <canvas id="canvas" width="500" height="500"></canvas>
-    
+
     <div>
         <!-- Color Picker -->
         <label>Pick a Color: </label>
-        <input type="color" id="colorPicker" value="#000000">
+        <input type="color" id="colorPicker" value="#f8f8f8">
     </div>
 
     <script>
-
         //Define Initial Variables
         var canvas = document.querySelector('canvas');
         var ctx = canvas.getContext('2d');
@@ -41,7 +40,7 @@
             ctx.arc(x, y, radius, 0, 2 * Math.PI);
             ctx.fill();
         }
-        
+
         // Drawing placement event listener for computer
         window.addEventListener('mousemove', function (e) {
             x = e.pageX;
@@ -59,9 +58,9 @@
             console.log(e.pageY);
             draw();
         })
-        
+
         // Clear Canvas if Orientation is Changed
-        window.addEventListener('orientationchange',resizeCanvas,false)
+        window.addEventListener('orientationchange', resizeCanvas, false)
 
         // Change colors, pen size, and clear canvas
         window.addEventListener('keyup', function (e) {
@@ -101,30 +100,29 @@
                 // clear canvas and resize by pressing space
                 resizeCanvas();
                 console.log("Canvas Cleared");
-                
-            // increase pen size
+
+                // increase pen size
             } else if (e.keyCode == 38) {
                 console.log("Pen Size Increased by 3");
                 radius = radius + 3
 
-            // decrease pen size
+                // decrease pen size
             } else if (e.keyCode == 40 && radius > 5) {
                 console.log("Pen Size Decreased by 3");
                 radius = radius - 3
             }
             draw()
         })
-        
+
         // Resizes the Canvas to fit in Window
         function resizeCanvas() {
             canvas.width = window.innerWidth * 0.7;
             canvas.height = window.innerHeight * 0.7;
-            window.addEventListener('resize', canvas.width,canvas.height);
+            window.addEventListener('resize', canvas.width, canvas.height);
         }
-
-        // Change Color If Color Picker Used
-        colorPicker.addEventListener("Color Changed:", colorCheck);
-        function colorCheck(e){
+        // Switch Color on Canvas to Color Picker color
+        colorPicker.addEventListener("change", checkColor);
+        function checkColor(e) {
             color = event.target.value;
         }
     </script>
