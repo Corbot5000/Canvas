@@ -40,15 +40,24 @@
             ctx.fill();
         }
         
-        // Drawing placement event listener
+        // Drawing placement event listener for computer
         window.addEventListener('mousemove', function (e) {
-            console.log(e.pageX);
-            console.log(e.pageY);
             x = e.pageX;
+            console.log(e.pageX);
             y = e.pageY;
+            console.log(e.pageY);
             draw()
         })
 
+        // Drawing placement listener for touch
+        window.addEventListener('touchmove', function (e) {
+            x = e.pageX;
+            console.log(e.pageX);
+            y = e.pageY;
+            console.log(e.pageY);
+            draw();
+        })
+    
         // Change colors, pen size, and clear canvas
         window.addEventListener('keyup', function (e) {
             // KeyCodes found at https://keycode.info
