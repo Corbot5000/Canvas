@@ -16,7 +16,7 @@
 
 <body>
     <!-- Initial Canvas -->
-    <canvas id="canvas" width="500" height="500"></canvas>
+    <canvas id="canvas" width="800" height="500"></canvas>
 
     <div>
         <!-- Color Picker -->
@@ -58,6 +58,16 @@
             console.log(e.pageY);
             draw();
         })
+
+        // Determines Size of Canvas (80%) in Window
+        function resizeCanvas(e) {
+            canvas.width = window.innerWidth * 0.8;
+            canvas.height = window.innerHeight * 0.8;
+            console.log('resize', canvas.width, canvas.height);
+        }
+
+        // Load Canvas to Fit Screen Orientation with 80% of Size
+        window.addEventListener('load', resizeCanvas, false);
 
         // Clear Canvas if Orientation is Changed
         window.addEventListener('orientationchange', resizeCanvas, false)
@@ -114,12 +124,6 @@
             draw()
         })
 
-        // Resizes the Canvas to fit in Window
-        function resizeCanvas() {
-            canvas.width = window.innerWidth * 0.7;
-            canvas.height = window.innerHeight * 0.7;
-            window.addEventListener('resize', canvas.width, canvas.height);
-        }
         // Switch Color on Canvas to Color Picker color
         colorPicker.addEventListener("change", checkColor);
         function checkColor(e) {
