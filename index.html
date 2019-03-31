@@ -16,7 +16,7 @@
 
 <body>
     <!-- Initial Canvas -->
-    <canvas id="canvas" width="800" height="500"></canvas>
+    <canvas id="canvas" width="500" height="500"></canvas>
     
     <div>
         <!-- Color Picker -->
@@ -57,7 +57,10 @@
             console.log(e.pageY);
             draw();
         })
-    
+        
+        // Clear Canvas if Orientation is Changed
+        window.addEventListener('orientationchange',resizeCanvas,false)
+        
         // Change colors, pen size, and clear canvas
         window.addEventListener('keyup', function (e) {
             // KeyCodes found at https://keycode.info
@@ -93,9 +96,10 @@
                 color = "#2DB24C"
 
             } else if (e.keyCode == 32) {
-                // clear canvas with space 
+                // clear canvas and resize by pressing space
+                resizeCanvas();
                 console.log("Canvas Cleared");
-                ctx.clearRect(0, 0, canvas.width, canvas.height)
+                
 
             } else if (e.keyCode == 38) {
                 // increase pen size
@@ -110,15 +114,10 @@
             draw()
         })
 
-        // resize Canvas
         function resizeCanvas() {
-            location.reload();
-        }
-
-        function canvasSize(e) {
-            window.addEventListener('resize', canvasSize);
             canvas.width = window.innerWidth * 0.7;
             canvas.height = window.innerHeight * 0.7;
+            window.addEventListener('resize', canvas.width,canvas.height);
         }
     </script>
 
